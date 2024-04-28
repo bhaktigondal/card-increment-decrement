@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Product Card with Quantity</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img {
+            display: block;
+            margin: 0 auto 10px auto;
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .card-heading {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .description {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .price {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .quantity-btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .quantity-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #quantity {
+            margin: 0 10px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <img src="https://contents.mediadecathlon.com/p2393850/67c2770483263de42d776a5bd55957ac/p2393850.jpg?format=auto&f=768x0"
+            alt="Shoes" class="card-img">
+        <h1 class="card-heading">Shoes</h1>
+        <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, aut.</p>
+        <p class="price" id="price">2000</p>
+
+        <div class="quantity-btn-container">
+            <button type="button" onclick="decrement()" class="quantity-btn">
+                -
+            </button>
+            <span id="quantity">1</span>
+            <button type="button" onclick="increment()" class="quantity-btn">
+                +
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function increment() {
+            const quantityElement = document.getElementById("quantity");
+            let quantity = parseInt(quantityElement.innerText);
+            if (quantity < 10) {
+                quantity++;
+                quantityElement.innerText = quantity;
+                updatePrice(quantity);
+            } else {
+                alert("You cannot add more than 10 items.");
+            }
+        }
+
+        function decrement() {
+            const quantityElement = document.getElementById("quantity");
+            let quantity = parseInt(quantityElement.innerText);
+            if (quantity > 1) {
+                quantity--;
+                quantityElement.innerText = quantity;
+                updatePrice(quantity);
+            } else {
+                alert("You cannot have less than 1 item.");
+            }
+        }
+
+        function updatePrice(quantity) {
+            const priceElement = document.getElementById("price");
+            const pricePerUnit = 2000;
+            priceElement.innerText = quantity * pricePerUnit;
+        }
+    </script>
+</body>
+
+</html>
